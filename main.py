@@ -22,20 +22,20 @@ snake_speed = 15
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 35)
 
-
-def Your_score(score):
-    value = score_font.render("Ваш счёт: " + str(score), True, yellow)
-    dis.blit(value, [0, 0])
-def our_snake(snake_block, snake_list):
-    for x in snake_list:
-        pygame.draw.rect(dis, green, [x[0], x[1], snake_block, snake_block])
-
-
-def message(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 6, dis_height / 3])
+class Snake:
+    def Your_score(score):
+        value = score_font.render("Ваш счёт: " + str(score), True, yellow)
+        dis.blit(value, [0, 0])
+    def our_snake(snake_block, snake_list):
+        for x in snake_list:
+            pygame.draw.rect(dis, green, [x[0], x[1], snake_block, snake_block])
 
 
+    def message(msg, color):
+        mesg = font_style.render(msg, True, color)
+        dis.blit(mesg, [dis_width / 6, dis_height / 3])
+
+snake=Snake
 def gameLoop():
     game_over = False
     game_close = False
@@ -50,8 +50,8 @@ def gameLoop():
     while not game_over:
         while game_close == True:
             dis.fill(blue)
-            message("Вы проиграли! ESC - выход, SPACE - играть ещё раз", red)
-            Your_score(Length_of_snake - 1)
+            snake.message("Вы проиграли! ESC - выход, SPACE - играть ещё раз", red)
+            snake.Your_score(Length_of_snake - 1)
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -91,8 +91,8 @@ def gameLoop():
         for x in snake_List[:-1]:
             if x == snake_Head:
                 game_close = True
-        our_snake(snake_block, snake_List)
-        Your_score(Length_of_snake - 1)
+        snake.our_snake(snake_block, snake_List)
+        snake.Your_score(Length_of_snake - 1)
         pygame.display.update()
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
