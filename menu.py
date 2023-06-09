@@ -6,9 +6,10 @@ surface = create_example_window('Snake-menu', (800, 600))
 
 
 
+
+
 def start_the_game():
-    print(f'{user_name.get_value()}, - имя')
-    print(f'{user_pass.get_value()}, - пароль')
+    print(f'{user_pass.get_value()}, - пароль',f'{user_name.get_value()}, - имя')
     import main
 
 menu = pygame_menu.Menu(

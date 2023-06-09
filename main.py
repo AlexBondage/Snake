@@ -6,6 +6,7 @@ import menu
 
 global game_started
 
+
 pygame.init()
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -26,6 +27,7 @@ class Snake:
     def Your_score(score):
         value = score_font.render("Ваш счёт: " + str(score), True, yellow)
         dis.blit(value, [0, 0])
+        return score
     def our_snake(snake_block, snake_list):
         for x in snake_list:
             pygame.draw.rect(dis, green, [x[0], x[1], snake_block, snake_block])
